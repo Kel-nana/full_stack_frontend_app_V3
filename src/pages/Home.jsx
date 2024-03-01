@@ -1,7 +1,21 @@
-import React from 'react'
-import classes from './home.module.css'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import classes from './home.module.css';
 
 export const Home = () => {
+    const [users, setUsers] = useState([]);
+
+    useEffect(()=>{
+        const loadUsers =async ()=> {
+            let result = await axios.get("http://localhost:8080/users");
+            result= result.data
+            setUsers(result)
+        }
+loadUsers()
+    }, [])
+
+    console.log(users, 'DATA FETCHED')
+
   return (
     <div className={`container ${classes.home_table}`}>
         <div className='py-4'>
