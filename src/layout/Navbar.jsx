@@ -10,7 +10,7 @@ export const Navbar = () => {
     <a className="navbar-brand" href="#">
       <img src={logoImg} alt="logo" width="50" height="44" />
     </a>
-    <button type="button" class="btn btn-outline-secondary">Add User</button>
+    <button type="button" className="btn btn-outline-secondary">Add User</button>
   </div>
 </nav>
     </div>
