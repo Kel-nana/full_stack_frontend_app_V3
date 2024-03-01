@@ -1,0 +1,5 @@
+.home_table div {
+    border-left: 2px solid rgb(151, 148, 142);
+    border-right: 2px solid rgb(151, 148, 142);
+    border-radius: 20px;
+}
