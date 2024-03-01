@@ -3,3 +3,8 @@
     border-right: 2px solid rgb(151, 148, 142);
     border-radius: 20px;
 }
+
+.home_table  button  {
+    border: 1.5px solid rgb(151, 148, 142);
+    margin-right: 5px;
+}
