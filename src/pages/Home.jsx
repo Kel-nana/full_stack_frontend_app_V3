@@ -22,7 +22,7 @@ export const Home = () => {
 
     const userData = users.map((user, index) => (
         <tr key={user.id}>
-            <th scope="row">{index}</th>
+            <th scope="row">{index+1}</th>
             <td>{user.name}</td>
             <td>{user.username}</td>
             <td>{user.email}</td>
