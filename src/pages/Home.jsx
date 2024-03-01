@@ -15,6 +15,23 @@ loadUsers()
     }, [])
 
     console.log(users, 'DATA FETCHED')
+    // const userData = users.map((user, index)=> {
+    //   <tr key={user.id}>
+    //   <th scope="row">{index}</th>
+    //   <td>{user.name}</td>
+    //   <td>{user.username}</td>
+    //   <td>{user.email}</td>
+    // </tr>
+    // });
+    const userData = users.map((user, index) => (
+      <tr key={user.id}>
+          <th scope="row">{index}</th>
+          <td>{user.name}</td>
+          <td>{user.username}</td>
+          <td>{user.email}</td>
+      </tr>
+  ));
+
 
   return (
     <div className={`container ${classes.home_table}`}>
@@ -23,18 +40,13 @@ loadUsers()
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Name</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
+    {userData}
     <tr>
       <th scope="row">2</th>
       <td>Jacob</td>
