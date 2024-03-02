@@ -1,0 +1,5 @@
+.logo_img img {
+    border-radius: 8px;
+    border: 2.5px solid rgb(151, 148, 142);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
