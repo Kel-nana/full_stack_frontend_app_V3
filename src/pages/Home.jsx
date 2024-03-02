@@ -1,24 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import classes from './home.module.css';
 import { ViewUser } from '../users/ViewUser';
 
 export const Home = () => {
-    const {id} = useParams()
     const [users, setUsers] = useState([]);
     const [viewUserId, setViewUserId] = useState(null);
 
     useEffect(() => {
-        const loadUsers = async () => {
-            try {
-                const result = await axios.get("http://localhost:8080/users");
-                setUsers(result.data);
-            } catch (error) {
-                console.error("Error fetching users:", error);
-            }
-        };
-
         loadUsers();
     }, []);
 
@@ -27,7 +17,17 @@ export const Home = () => {
     const viewUserFunction = (userId) => {
         setViewUserId(userId);
     }
+    
+    const loadUsers = async () => {
+    const result = await axios.get("http://localhost:8080/users");
+          setUsers(result.data);
+      } 
+    const deleteUser = async (userId)=> {
+        await axios.delete(`http://localhost:8080/user/${userId}`);
+        loadUsers();
+      };
 
+        
     const userData = users.map((user, index) => (
         <tr key={user.id}>
             <th scope="row">{index+1}</th>
@@ -37,7 +37,7 @@ export const Home = () => {
             <td>
                 <button type="button" className="btn btn-primary" onClick={() => viewUserFunction(user.id)}>View</button>
                 <Link to={`/editUser/${user.id}`} className="btn btn-outline-info">Edit</Link>
-                <button type="button" className="btn btn-danger">Delete</button>
+                <button type="button" className="btn btn-danger" onClick={()=> deleteUser(user.id)}>Delete</button>
             </td>
         </tr>
     ));
