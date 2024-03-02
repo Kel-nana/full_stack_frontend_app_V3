@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import classes from './home.module.css';
 
 export const Home = () => {
@@ -28,7 +29,8 @@ export const Home = () => {
             <td>{user.email}</td>
             <td>
             <button type="button" className="btn btn-primary">View</button>
-            <button type="button" className="btn btn-outline-info">Edit</button>
+            <Link 
+            to={`/editUser/${user.id}`} className="btn btn-outline-info">Edit</Link>
             <button type="button" className="btn btn-danger">Delete</button>
             </td>
         </tr>
