@@ -11,7 +11,7 @@ export const Navbar = () => {
   <Link to="/" className="navbar-brand">
             <img src={logoImg} alt="logo" width="50" height="44" />
           </Link>
-    <Link type="button" className="btn btn-outline-secondary" to="/AddUser">Add User</Link>
+    <Link type="button" className="btn btn-outline-secondary" to="/addUser">Add User</Link>
   </div>
 </nav>
     </div>
