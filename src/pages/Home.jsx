@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import classes from './home.module.css';
+import { ViewUser } from '../users/ViewUser';
 
 export const Home = () => {
+    const {id} = useParams()
     const [users, setUsers] = useState([]);
+    const [viewUserId, setViewUserId] = useState(null);
 
     useEffect(() => {
         const loadUsers = async () => {
@@ -19,7 +22,11 @@ export const Home = () => {
         loadUsers();
     }, []);
 
-    console.log(users, 'DATA FETCHED');
+    console.log(viewUserId, 'view user id')
+
+    const viewUserFunction = (userId) => {
+        setViewUserId(userId);
+    }
 
     const userData = users.map((user, index) => (
         <tr key={user.id}>
@@ -28,10 +35,9 @@ export const Home = () => {
             <td>{user.username}</td>
             <td>{user.email}</td>
             <td>
-            <button type="button" className="btn btn-primary">View</button>
-            <Link 
-            to={`/editUser/${user.id}`} className="btn btn-outline-info">Edit</Link>
-            <button type="button" className="btn btn-danger">Delete</button>
+                <button type="button" className="btn btn-primary" onClick={() => viewUserFunction(user.id)}>View</button>
+                <Link to={`/editUser/${user.id}`} className="btn btn-outline-info">Edit</Link>
+                <button type="button" className="btn btn-danger">Delete</button>
             </td>
         </tr>
     ));
@@ -39,20 +45,26 @@ export const Home = () => {
     return (
         <div className={`container ${classes.home_table}`}>
             <div className='py-4'>
-                <table className="table table-striped table-hover table-dark">
-                    <thead>
-                        <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {userData}
-                    </tbody>
-                </table>
+                {viewUserId ? (
+                    <div>
+                        <ViewUser id={viewUserId} back={() => viewUserFunction()} />
+                    </div>
+                ) : (
+                    <table className="table table-striped table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {userData}
+                        </tbody>
+                    </table>
+                )}
             </div>
         </div>
     );
