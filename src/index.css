@@ -8,6 +8,11 @@ body {
   background-color: black;
 }
 
+.toggle {
+  background-color:#d2d3db !important;
+  color: black !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
