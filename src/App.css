@@ -24,15 +24,33 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.moon {
+  background-image: url("./assets/sun_bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 98px;
+  height: 38px;
+  left: 4px; /* Initial left position */
+  position: absolute;
+  top: 1px;
+  width: 38px;
+  transition: left ease .5s; /* Transitioning left property */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.body_toggle {
+  background-color: lightgray;
+  border: 0;
+  border-radius: 50px;
+  cursor: pointer;
+  height: 40px;
+  position: relative;
+  margin-left: 80%;
+  width: 90px;
+}
+
+.animate_left {
+  background-image: url("./assets/moon_bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 48px; /* Final left position */
 }

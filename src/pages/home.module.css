@@ -7,11 +7,7 @@
 .home_table  button  {
     border: 2.5px solid rgb(151, 148, 142);
     margin-right: 5px;
-}
-
-.home_table  link  {
-    border: 2.5px solid rgb(151, 148, 142);
-    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .home_table section {
