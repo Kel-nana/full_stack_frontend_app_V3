@@ -1,16 +1,24 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { InputField } from '../UI/InputField'
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-export const EditUser = () => {
-
+export const EditUser = ({ handleEditData }) => {
+  const location = useLocation();
+  const {id}=useParams()
   let navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
     username: "",
     email: ""
   });
+
+  let editLocation = location.pathname;
+  const editLocationData =[editLocation,id]
+console.log(editLocationData, 'EDIT LOCATION')
+  useEffect(()=> {
+    handleEditData(editLocation);
+  }, [editLocation, handleEditData]);
 console.log(user, "user input data")
 
 useEffect(() => {
@@ -25,7 +33,7 @@ useEffect(() => {
 
     loadUsers();
 }, []);
-const {id}=useParams()
+
   const {name, username, email} =user;
 
   const onInputChange = (e)=> {
@@ -38,7 +46,7 @@ setUser({...user,[e.target.name]: e.target.value});
     navigate("/")
   };
   return (
-    <div className='container'>
+    <div className='container user_container'>
       <div className='row'>
         <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
           <h2>Edit User</h2>
