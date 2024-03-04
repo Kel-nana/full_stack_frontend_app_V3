@@ -1,15 +1,21 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { InputField } from '../UI/InputField'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-export const AddUser = () => {
+export const AddUser = ({ handleAddData   }) => {
+  const location = useLocation();
+  const locationAdd = location.pathname;
+  console.log(locationAdd, "location add user")
   let navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
     username: "",
     email: ""
   });
+  useEffect(() => {
+    handleAddData  (locationAdd);
+  }, [locationAdd, handleAddData  ]);
 console.log(user, "user input data")
   const {name, username, email} =user;
 
@@ -23,7 +29,7 @@ setUser({...user,[e.target.name]: e.target.value});
     navigate("/")
   };
   return (
-    <div className='container'>
+    <div className='container user_container'>
       <div className='row'>
         <div className='col-md-6 offset-md-3 border rounded p-4 mt-2 shadow'>
           <h2>Add User</h2>
