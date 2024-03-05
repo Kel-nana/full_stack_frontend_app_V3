@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import classes from './home.module.css';
 import { ViewUser } from '../users/ViewUser';
 
-export const Home = () => {
+export const Home = ({ handleHomeData, text_color }) => {
+    const location = useLocation();
     const [users, setUsers] = useState([]);
     const [viewUserId, setViewUserId] = useState(null);
-
+    
+    const homeLocationData= location.pathname 
+    console.log(homeLocationData, 'HOME LOCATION DATA');
     useEffect(() => {
         loadUsers();
     }, []);
+
+    useEffect(()=>{
+        handleHomeData(homeLocationData)
+    },[handleHomeData, homeLocationData]);
 
     console.log(viewUserId, 'view user id')
 
     const viewUserFunction = (userId) => {
         setViewUserId(userId);
     }
-    
     const loadUsers = async () => {
     const result = await axios.get("http://localhost:8080/users");
           setUsers(result.data);
@@ -26,8 +32,7 @@ export const Home = () => {
         await axios.delete(`http://localhost:8080/user/${userId}`);
         loadUsers();
       };
-
-        
+       
     const userData = users.map((user, index) => (
         <tr key={user.id}>
             <th scope="row">{index+1}</th>
@@ -43,14 +48,14 @@ export const Home = () => {
     ));
 
     return (
-        <div className={`container ${classes.home_table}`}>
+        <div className={`container ${classes.home_table} ${text_color?"text_dark": ""}`}>
             <div className='py-4'>
                 {viewUserId ? (
                     <div>
                         <ViewUser id={viewUserId} back={() => viewUserFunction()} />
                     </div>
                 ) : (
-                    <table className="table table-striped table-hover table-dark">
+                    <table className={`table table-striped table-hover ${text_color? 'table-secondary' : 'table-dark'}`}>
                         <thead>
                             <tr>
                                 <th scope="col">No.</th>
