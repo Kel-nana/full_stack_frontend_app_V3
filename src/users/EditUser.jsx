@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { InputField } from '../UI/InputField'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-export const EditUser = ({ handleEditData }) => {
+export const EditUser = ({ handleEditData, setDataEdit, handleId }) => {
   const location = useLocation();
   const {id}=useParams()
   let navigate = useNavigate();
@@ -14,12 +14,13 @@ export const EditUser = ({ handleEditData }) => {
   });
 
   let editLocation = location.pathname;
-  const editLocationData =[editLocation,id]
-console.log(editLocationData, 'EDIT LOCATION')
+
   useEffect(()=> {
     handleEditData(editLocation);
   }, [editLocation, handleEditData]);
-console.log(user, "user input data")
+  useEffect(()=> {
+    handleId(id);
+  }, [id, handleId]);
 
 useEffect(() => {
     const loadUsers = async () => {
@@ -34,8 +35,6 @@ useEffect(() => {
     loadUsers();
 }, []);
 
-  const {name, username, email} =user;
-
   const onInputChange = (e)=> {
 setUser({...user,[e.target.name]: e.target.value});
   }
@@ -45,6 +44,10 @@ setUser({...user,[e.target.name]: e.target.value});
     await axios.put(`http://localhost:8080/user/${id}`, user);
     navigate("/")
   };
+
+  const setEditDataFunction = ()=> {
+    setDataEdit(null)
+  }
   return (
     <div className='container user_container'>
       <div className='row'>
@@ -77,7 +80,7 @@ setUser({...user,[e.target.name]: e.target.value});
             />
 
             <button type="submit" className="btn btn-outline-success mx-3" >Submit</button>
-            <Link to="/" className="btn btn-outline-danger mx-3">Cancel</Link>
+            <Link to="/" className="btn btn-outline-danger mx-3" onClick={setEditDataFunction }>Cancel</Link>
           </form>
         </div>
       </div>
