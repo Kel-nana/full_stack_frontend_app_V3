@@ -3,24 +3,27 @@ import React, { useState , useEffect} from 'react';
 import { InputField } from '../UI/InputField'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-export const AddUser = ({ handleAddData   }) => {
+export const AddUser = ({ handleAddData, setDataAdd }) => {
   const location = useLocation();
-  const locationAdd = location.pathname;
-  console.log(locationAdd, "location add user")
   let navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
     username: "",
     email: ""
   });
+  
+  const locationAdd = location.pathname;
+  
   useEffect(() => {
     handleAddData  (locationAdd);
   }, [locationAdd, handleAddData  ]);
-console.log(user, "user input data")
-  const {name, username, email} =user;
 
   const onInputChange = (e)=> {
 setUser({...user,[e.target.name]: e.target.value});
+  }
+
+  const setDataAddFunction = ()=> {
+    setDataAdd(null)
   }
 
   const onSubmitHandler = async (e)=> {
@@ -60,7 +63,7 @@ setUser({...user,[e.target.name]: e.target.value});
             />
 
             <button type="submit" className="btn btn-outline-success mx-3" >Submit</button>
-            <Link to="/" className="btn btn-outline-danger mx-3">Cancel</Link>
+            <Link to="/" className="btn btn-outline-danger mx-3"onClick={setDataAddFunction}>Cancel</Link>
           </form>
         </div>
       </div>
