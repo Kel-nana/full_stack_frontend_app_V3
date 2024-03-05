@@ -7,13 +7,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
 }
-
+/* #cecece */
 .toggle {
-  background-color:#d2d3db !important;
+  background-color:#cecece !important;
   color: black !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.text_dark {
+  color: black !important;
 }

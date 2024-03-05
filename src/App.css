@@ -25,32 +25,55 @@
 }
 
 .moon {
-  background-image: url("./assets/sun_bg.jpg");
+  background-image: url("./assets/sunbgtwo.png");
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 98px;
   height: 38px;
-  left: 4px; /* Initial left position */
+  top: -1.7px;
+  left: 0; /* Initial left position */
   position: absolute;
-  top: 1px;
-  width: 38px;
+  width: 40px;
   transition: left ease .5s; /* Transitioning left property */
 }
 
 .body_toggle {
-  background-color: lightgray;
-  border: 0;
+  /* background-color: lightgray; */
+  border: 2px solid black;
   border-radius: 50px;
   cursor: pointer;
   height: 40px;
   position: relative;
-  margin-left: 80%;
+  margin-left: 82.4%;
+  margin-top: 10px;
   width: 90px;
 }
 
-.animate_left {
-  background-image: url("./assets/moon_bg.png");
+.toggle_bg_img {
+  background-image: url("./assets/toggle_bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  left: 48px; /* Final left position */
+  padding: 2px;
+}
+
+.toggle_bg_img_moon {
+  background-image: url("./assets/moonbgtoggle.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2px;
+}
+
+.animate_left {
+  background-image: url("./assets/moonbgtwo.jpg");
+  height: 36px !important;
+  top: 0 !important;
+  left: 45px; /* Final left position */
+}
+
+nav .nav_toggle {
+  background: #fff !important;
+}
+
+.user_container {
+  padding-bottom: 8vh;
 }
